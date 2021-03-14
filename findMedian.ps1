@@ -8,17 +8,20 @@ function Get-Median {
         $arr2
     )
 
-    begin { $median = $null }
+    begin { 
+        $median = $null 
+        $counter = 0
+        [ArrayList]$combined = $arr1 + $arr2
+        $combined.Sort()
+    }
     
     process {
-        [SortedList]$combined = New-Object -TypeName SortedList
-        foreach ($i in ($arr1 + $arr2)) {
-            $combined.Add($i, $i)
-        }
         if ($combined.Count % 2 -eq 0) {
             $mid1 = $combined.Count / 2 - 1
-            $mid2 = $combined.Count / 2 
-            $median = ( $combined.GetByIndex($mid1) + $combined.GetByIndex($mid2) ) / 2
+            $mid2 = $combined.Count / 2
+            $median = ( $combined[$mid1] + $combined[$mid2] ) / 2
+        } else {
+            $median = $combined[( $combined.Count + 1 ) / 2]
         }
     }
 
@@ -26,6 +29,6 @@ function Get-Median {
 }
 
 [ArrayList]$arr1 = @(1,3,5)
-[ArrayList]$arr2 = @(2,4,6)
+[ArrayList]$arr2 = @(2,4)
 
 Get-Median -arr1 $arr1 -arr2 $arr2
