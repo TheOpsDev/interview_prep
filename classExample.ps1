@@ -28,9 +28,14 @@ class Student {
 }
 
 class Course {
+
     [String]$CourseName
     [Student[]]$Enrolled = @()
     static [Int32]$Year = 2021
+    
+    Course([String]$Name) {
+        $this.CourseName = $Name
+    }
 
     Course([String]$Name, [Student[]]$Students) {
         $this.CourseName = $Name
