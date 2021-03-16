@@ -4,12 +4,17 @@ class Student {
 
     # Properties
     [String]$Name
-    [Int32[]]$Grades
+    [Int32[]]$Grades = @()
 
     # Constructor for object class
+    Student([String]$Name) {
+        $this.Name = $Name
+    }
+
+    # Overloaded constructor
     Student([String]$Name, [Int32[]]$Grades) {
         $this.Name = $Name
-        $this.Grades = $Grades
+        $this.Grades += $Grades
     }
 
     # Method definition : [ReturnType] methodName([String]Param1, [Int]Param2)
@@ -24,6 +29,31 @@ class Student {
 
     [void] AddGrade([Int32]$Grade) {
         $this.Grades += $Grade
+    }
+}
+
+# Inheritance - ChildClass : Parent Class {}
+class GradStudent : Student {
+    
+    [Bool]$PostGrade = $true
+    [String]$Major
+
+    # Call parent class constructor
+    GradStudent([String]$Name) : base ($Name){ }
+    
+    # Overloaded child class constructor
+    GradStudent([String]$Name, [Int32]$Grade) : base ($Name, $Grade){ }
+ 
+    GradStudent([String]$Name, [Int32]$Grade, [String]$Major) : base ($Name, $Grade){
+        $this.Major = $Major
+    }
+
+    [String] GetMajor() {
+        return $this.Major
+    }
+
+    [void] ChangeMajor([String]$Major) {
+        $this.Major = $Major
     }
 }
 
@@ -67,6 +97,8 @@ class Course {
 # Calling constructor, see line 7
 $s1 = [Student]::new('Chris Herrera', 85)
 $s2 = [Student]::new('Alexx Rodarte', 95)
+$gs1 = [GradStudent]::new('Elliot Herrera', 100, 'Engineering')
 $c1 = [Course]::new('CompSci', $s1)
 $c1.AddStudent($s2)
+$c1.AddStudent($gs1)
 $c1.CalculateAvgGrade()
