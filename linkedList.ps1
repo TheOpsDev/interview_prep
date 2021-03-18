@@ -32,7 +32,7 @@ class LinkedList {
         Write-Host -NoNewline "Head: $($this.Head.Value.Value) --> "
         $next = $this.Head.Value.Next
         for ($i = 0; $i -lt $this.Length; $i++) {
-            Write-Host -NoNewline "$($Next.Value.Value) -->"
+            Write-Host -NoNewline "$($Next.Value.Value) --> "
             $next = $next.Value.Next
         }
     }
