@@ -21,7 +21,6 @@ function Get-MaxProfit {
             
             if ($diff -le 0) {
                 Continue
-                # return $profit
             }
             $profit += $diff
         }
