@@ -37,7 +37,7 @@ function Find-SingleNum {
 }
 
 $arr1 = @(2,2,1)
-$arr1 = @(4,1,2,1,2)
+$arr2 = @(4,1,2,1,2)
 
 Find-SingleNum -Array $arr1
 Find-SingleNum -Array $arr2
