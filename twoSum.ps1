@@ -34,12 +34,11 @@ function Get-TwoSum {
             for($j = $i+1; $j -lt $Array.Count; $j++) {
                 if (($Array[$i] + $Array[$j]) -eq $Target) {
                     $answer += @($Array[$i], $Array[$j])
+                    return $answer
                 }
             }
         }
     }
-
-    end { return $answer }
 }
 
 $n1 = 2,11,15,7
