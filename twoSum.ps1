@@ -9,7 +9,7 @@
 # Example 1:
 
 # Input: nums = [2,11,15,7], target = 9
-# Output: [0,1]
+# Output: [0,3]
 # Output: Because nums[0] + nums[1] == 9, we return [0, 1].
 # Example 2:
 
