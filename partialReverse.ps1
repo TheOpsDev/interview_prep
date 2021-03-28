@@ -14,13 +14,14 @@ function partial-reverse {
     )
 
     process {
-        $size = $End - $Start
-        for ($i = $size; $i -gt 0; $i--) {
-            $Array[($i - $Start)] = $Array[$size - $i]
+        $tmp = $Array[$Start]
+        for ($i = ($End - $Start); $i -ge 0; $i--) {
+            $Array[($End - $i)] = $Array[($Start + $i)] 
         }
+        $Array[$End] = $tmp
         return $Array
     }
 }
 
-$a = @('A','B','E','D','C','F')
+$a = @('A','B','C','D','E','F')
 partial-reverse -Array $a -Start 2 -End 4
